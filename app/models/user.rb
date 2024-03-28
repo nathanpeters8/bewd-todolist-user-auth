@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     has_many :sessions
+    has_many :tasks
 
     # validations
     validates :username, presence: true, length: { minimum: 3, maximum: 20 }
