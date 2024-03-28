@@ -4,8 +4,8 @@ class SessionsController < ApplicationController
     # Find the user by username
     @user = User.find_by(username: params[:user][:username])
 
-    # If the user exists and the password is correct
-    if @user && @user.password == params[:user][:password]
+    # If the user exists and the decrypted password is correct
+    if @user && BCrypt::Password.new(@user.password) == params[:user][:password]
       # Create a new session for the user
       session = @user.sessions.create
 
